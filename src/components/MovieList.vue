@@ -6,7 +6,10 @@
       <v-col
         v-for="movie in moviesData?.data || []"
         :key="movie.imdbID"
-        cols="6"
+        cols="12"
+        sm="6"
+        md="6"
+        lg="6"
       >
         <Movie v-bind="movie" />
       </v-col>

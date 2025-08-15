@@ -24,7 +24,7 @@
     <template v-slot:title>
       <span class="font-weight-black">{{ props.Title }}</span>
     </template>
-    <v-card-actions class="bg-grey-lighten-5">
+    <v-card-actions class="bg-grey-lighten-4">
       <v-spacer></v-spacer>
       <v-btn rounded="xl" size="lg" @click="fav(props)">
         <v-icon :color="isFav(props.imdbID) ? 'red' : ''">
