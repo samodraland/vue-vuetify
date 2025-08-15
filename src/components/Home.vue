@@ -74,7 +74,7 @@ const { favorites } = storeToRefs(appStore);
 // const page = ref<number>(1);
 
 function searchMovie() {
-  movieListChild.value?.searchMovie();
+  movieListChild.value?.searchMovie(true);
 }
 
 function onClear() {
