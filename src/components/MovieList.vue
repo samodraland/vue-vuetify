@@ -14,7 +14,7 @@
         v-if="moviesData?.data.length"
         v-model:page="page"
         :totalPages="moviesData.total_pages"
-        @update:page="searchMovie"
+        @update:page="searchMovie(false)"
       />
     </v-row>
   </div>
@@ -37,7 +37,8 @@ const props = defineProps<Props>();
 const page = ref<number>(1);
 const isLoading = ref<boolean>(false);
 
-async function searchMovie() {
+async function searchMovie(resetPage = false) {
+  if (resetPage) page.value = 1;
   isLoading.value = true;
   await appStore.fetchData(props.searchBy, props.keyword.trim(), page.value);
   isLoading.value = false;

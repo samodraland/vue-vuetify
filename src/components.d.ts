@@ -8,7 +8,6 @@ export {}
 /* prettier-ignore */
 declare module 'vue' {
   export interface GlobalComponents {
-    Favorites: typeof import('./components/FavoritesList.vue')['default']
     FavoritesList: typeof import('./components/FavoritesList.vue')['default']
     Home: typeof import('./components/Home.vue')['default']
     Index: typeof import('./components/Home.vue')['default']

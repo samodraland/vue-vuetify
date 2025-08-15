@@ -20,7 +20,7 @@ import { storeToRefs } from "pinia";
 
 const appStore = useAppStore();
 const { favorites } = storeToRefs(appStore);
-const totalPage: number = computed(() =>
+const totalPage = computed<number>(() =>
   Math.ceil(favorites.value.length / 10)
 );
 const page = ref(1);
