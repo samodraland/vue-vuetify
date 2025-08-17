@@ -38,7 +38,7 @@ const paginatedFavorites = computed(() => {
   const start = (page.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   const current = favorites.value.slice(start, end);
-  if (current.length <= itemsPerPage) page.value = 1;
+  if (current <= itemsPerPage) page.value = 1;
   return current;
 });
 
