@@ -6,10 +6,14 @@ import type { MovieList } from "@/types/movie";
 export const useAppStore = defineStore("app", {
   state: () => ({
     moviesData: null as MovieInterface | null,
-    favorites: [] as MovieList | []
+    favorites: [] as MovieList | [],
+    isLoading: false,
+    error: false,
+    errorMessage: null as string | null
   }),
   actions:{
     async fetchData(searchBy: string, keyword: string, page: number) {
+      this.isLoading = true
       try {
         this.moviesData = await getMovies(
           searchBy,
@@ -17,7 +21,11 @@ export const useAppStore = defineStore("app", {
           page
         );
       } catch(error) {
-        console.log("error", error)
+        this.error = true
+        this.moviesData = null
+        this.errorMessage = error instanceof Error ? error.message : String(error)
+      } finally{
+        this.isLoading = false
       }
     },
     loadFavorites() {

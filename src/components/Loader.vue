@@ -5,3 +5,7 @@
     </v-col>
   </v-row>
 </template>
+
+<script setup>
+defineOptions({ name: "Loader" });
+</script>

@@ -16,6 +16,7 @@
 </template>
 
 <script lang="ts" setup>
+defineOptions({ name: "Pagination" });
 interface Props {
   page: number;
   totalPages: number;

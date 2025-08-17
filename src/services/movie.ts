@@ -6,8 +6,12 @@ export async function getMovies(searchBy?: string, keyword?: string, page: numbe
 
   if (searchBy && keyword) params[searchBy] = keyword
 
-  const result = await api.get<MovieInterface>("/search", {
-    params
-  })
-  return result.data
+  try{
+    const result = await api.get<MovieInterface>("/search", {
+      params
+    })
+    return result.data
+  }catch(error){
+    throw new Error("Unknown error")
+  }
 }

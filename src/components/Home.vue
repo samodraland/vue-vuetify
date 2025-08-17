@@ -1,6 +1,5 @@
 <template>
   <v-container fluid class="pa-0">
-    <!-- <v-row> -->
     <v-container
       fluid
       class="position-absolute bg-light-blue-lighten-3 ornament"
@@ -67,7 +66,6 @@
         </v-container>
       </div>
     </v-container>
-    <!-- </v-row> -->
   </v-container>
 </template>
 
@@ -76,6 +74,8 @@ import { ref } from "vue";
 import MovieList from "./MovieList.vue";
 import { useAppStore } from "@/stores/app";
 import { storeToRefs } from "pinia";
+
+defineOptions({ name: "Home" });
 
 const tab = ref<string>("list");
 const searchBy = ref<"Title" | "Year">("Title");

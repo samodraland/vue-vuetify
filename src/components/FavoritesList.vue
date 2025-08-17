@@ -1,6 +1,10 @@
 <template>
   <div>
-    <NotFound v-if="!paginatedFavorites.length && !favorites.length" />
+    <ErrorHandler
+      message="Can't find any data"
+      icon="not-found.svg"
+      v-if="!paginatedFavorites.length && !favorites.length"
+    />
     <v-row>
       <v-col
         v-for="movie in paginatedFavorites || []"
@@ -23,6 +27,8 @@ import { useAppStore } from "@/stores/app";
 import { storeToRefs } from "pinia";
 import { ref, computed, watch } from "vue";
 
+defineOptions({ name: "FavoritesList" });
+
 const page = ref<number>(1);
 const itemsPerPage: number = 10;
 const appStore = useAppStore();
@@ -32,7 +38,7 @@ const paginatedFavorites = computed(() => {
   const start = (page.value - 1) * itemsPerPage;
   const end = start + itemsPerPage;
   const current = favorites.value.slice(start, end);
-  if (current <= itemsPerPage) page.value = 1;
+  if (current.length <= itemsPerPage) page.value = 1;
   return current;
 });
 

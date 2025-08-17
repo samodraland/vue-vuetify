@@ -22,7 +22,7 @@
       </v-chip>
     </v-card-subtitle>
     <template v-slot:title>
-      <span class="font-weight-black">{{ props.Title }}</span>
+      <span class="font-black">{{ props.Title }}</span>
     </template>
     <v-card-actions class="bg-grey-lighten-4">
       <v-spacer></v-spacer>
@@ -38,6 +38,8 @@
 <script setup lang="ts">
 import type { MovieList } from "@/types/movie";
 import { useAppStore } from "@/stores/app";
+
+defineOptions({ name: "Movie" });
 
 const props = defineProps<MovieList>();
 const appStore = useAppStore();
