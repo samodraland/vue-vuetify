@@ -1,7 +1,16 @@
 <template>
   <div>
-    <NotFound v-if="!moviesData?.data.length && !isLoading" />
-    <Loader v-if="isLoading" />
+    <ErrorHandler
+      message="Can't find any data"
+      icon="not-found.svg"
+      v-if="!moviesData?.data.length && !isLoading && !error"
+    />
+    <Loader v-if="isLoading && !error" />
+    <ErrorHandler
+      v-if="!isLoading && error"
+      :message="errorMessage || ''"
+      icon="error.svg"
+    />
     <v-row v-if="!isLoading">
       <v-col
         v-for="movie in moviesData?.data || []"
@@ -28,23 +37,22 @@ import { ref, onMounted } from "vue";
 import { useAppStore } from "@/stores/app";
 import { storeToRefs } from "pinia";
 
+defineOptions({ name: "MovieList" });
+
 interface Props {
   searchBy: string;
   keyword: string;
 }
 
 const appStore = useAppStore();
-const { moviesData } = storeToRefs(appStore);
+const { moviesData, isLoading, error, errorMessage } = storeToRefs(appStore);
 
 const props = defineProps<Props>();
 const page = ref<number>(1);
-const isLoading = ref<boolean>(false);
 
 async function searchMovie(resetPage = false) {
   if (resetPage) page.value = 1;
-  isLoading.value = true;
-  await appStore.fetchData(props.searchBy, props.keyword.trim(), page.value);
-  isLoading.value = false;
+  await appStore.fetchData(props.searchBy, props.keyword?.trim(), page.value);
 }
 
 onMounted(() => {
