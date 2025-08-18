@@ -11,7 +11,6 @@ declare module 'vue' {
     ErrorHandler: typeof import('./components/ErrorHandler.vue')['default']
     FavoritesList: typeof import('./components/FavoritesList.vue')['default']
     Home: typeof import('./components/Home.vue')['default']
-    Index: typeof import('./components/Home.vue')['default']
     Loader: typeof import('./components/Loader.vue')['default']
     Movie: typeof import('./components/Movie.vue')['default']
     MovieList: typeof import('./components/MovieList.vue')['default']

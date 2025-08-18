@@ -10,7 +10,7 @@
     "test:watch": "vitest --watch",
     "build": "run-p type-check \"build-only {@}\" --",
     "preview": "vite preview",
-    "build-only": "vite build",
+    "build-only": "vite build && node post-build.js",
     "type-check": "vue-tsc --build --force",
     "lint": "eslint . --fix"
   },
