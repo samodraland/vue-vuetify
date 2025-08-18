@@ -1,5 +1,7 @@
 # Frontend showcase consuming public API
 
+Live demo: https://demo.vandecode.com/jibble
+
 ## Environment
 - API: https://jsonmock.hackerrank.com/api/movies
 - Vuetify
