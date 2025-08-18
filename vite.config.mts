@@ -7,6 +7,7 @@ import Vue from '@vitejs/plugin-vue'
 import VueRouter from 'unplugin-vue-router/vite'
 import { VueRouterAutoImports } from 'unplugin-vue-router'
 import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
+import miscConfig from "./vite.misc.json" assert { type: "json" };
 
 // Utilities
 import { defineConfig } from 'vite'
@@ -14,6 +15,7 @@ import { fileURLToPath, URL } from 'node:url'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: miscConfig.base,
   plugins: [
     VueRouter({
       dts: 'src/typed-router.d.ts',
@@ -42,17 +44,20 @@ export default defineConfig({
     // https://github.com/vuetifyjs/vuetify-loader/tree/master/packages/vite-plugin#readme
     Vuetify({
       autoImport: true,
+      icons: {
+        defaultSet: 'mdi',
+      },
       styles: {
         configFile: 'src/styles/settings.scss',
       },
     }),
     Fonts({
-      fontsource: {
+      google: {
         families: [
           {
-            name: 'Roboto',
-            weights: [100, 300, 400, 500, 700, 900],
-            styles: ['normal', 'italic'],
+            name: "Roboto",
+            styles: "wght@100;300;400;500;700;900",
+            subsets: ["latin"], // only latin subset
           },
         ],
       },
@@ -95,4 +100,13 @@ export default defineConfig({
       },
     },
   },
+  build: {
+    target: 'esnext',
+    cssCodeSplit: true,
+    rollupOptions: {
+      output: {
+        manualChunks: undefined
+      }
+    }
+  }
 })

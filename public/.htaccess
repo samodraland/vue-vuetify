@@ -1,0 +1,16 @@
+RewriteEngine On
+RewriteBase /
+
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^ - [L]
+
+RewriteRule ^assets/ - [L]
+
+RewriteRule . /index.html [L]
+
+AddType application/javascript .js .mjs
+AddType text/css .css
+AddType font/woff2 .woff2
+AddType font/woff .woff
+AddType application/font-ttf .ttf
