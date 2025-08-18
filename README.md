@@ -5,6 +5,7 @@
 - Vuetify
 - Typescript
 - Vue 3
+- Pinia
 - Vitest (unit testing)
 
 ## Install the dependencies
